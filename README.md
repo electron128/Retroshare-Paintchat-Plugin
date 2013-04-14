@@ -1,0 +1,2 @@
+Retroshare-Paintchat-Plugin
+===========================
