@@ -6,7 +6,7 @@
 PaintWidget::PaintWidget(QWidget *parent) :
     QWidget(parent),image(500,500,QImage::Format_RGB32),color(Qt::black),penWidth(1)
 {
-    image.fill(Qt::white);
+    fillImage(Qt::white);
 }
 
 void PaintWidget::setImage(const QImage &img){
@@ -19,7 +19,11 @@ QImage PaintWidget::getImage(){
 }
 
 void PaintWidget::fillImage(QColor color){
+#if QT_VERSION < 0x040800
+    image.fill(color.rgba());
+#else
     image.fill(color);
+#endif
     update();
 }
 
