@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QImage>
+#include <stdint.h>
 
 class PaintWidget : public QWidget
 {

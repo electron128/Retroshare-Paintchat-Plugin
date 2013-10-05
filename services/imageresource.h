@@ -2,6 +2,7 @@
 #define IMAGERESOURCE_H
 
 #include <QImage>
+#include <stdint.h>
 
 class ImageDiff;
 
