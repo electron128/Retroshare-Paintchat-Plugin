@@ -7,11 +7,13 @@ PaintChatPopupChatDialog::PaintChatPopupChatDialog(QWidget *parent)
 
     paintChatWindow->hide();
 
-    paintChatWindowToggleButton = new QPushButton ;
+    paintChatWindowToggleButton = new QToolButton ;
     paintChatWindowToggleButton->setMinimumSize(QSize(28,28)) ;
     paintChatWindowToggleButton->setMaximumSize(QSize(28,28)) ;
     paintChatWindowToggleButton->setText(QString()) ;
     paintChatWindowToggleButton->setToolTip(tr("PaintChat"));
+    paintChatWindowToggleButton->setAutoRaise(true);
+    paintChatWindowToggleButton->setIconSize(QSize(24,24));
 
     QIcon icon ;
     icon.addPixmap(QPixmap(":/images/colors.png"));
