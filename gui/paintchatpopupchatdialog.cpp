@@ -19,7 +19,7 @@ PaintChatPopupChatDialog::PaintChatPopupChatDialog(QWidget *parent)
 
     connect(paintChatWindowToggleButton,SIGNAL(clicked()),this,SLOT(togglePaintChatWindow()));
 
-    addButton(paintChatWindowToggleButton);
+    addChatBarWidget(paintChatWindowToggleButton);
 }
 
 void PaintChatPopupChatDialog::togglePaintChatWindow(){
