@@ -5,17 +5,19 @@
 #include <QToolButton>
 #include "paintchatwindow.h"
 
-class PaintChatPopupChatDialog : public PopupChatDialog
+class PaintChatPopupChatDialog : public QObject, public PopupChatDialog_WidgetsHolder
 {
     Q_OBJECT
 public:
-    PaintChatPopupChatDialog(QWidget *parent = NULL);
+    PaintChatPopupChatDialog();
+    virtual void init(const std::string &peerId, const QString &title, ChatWidget* chatWidget);
+    virtual std::vector<QWidget*> getWidgets();
+    virtual void updateStatus(int status){ return;}
 
 private slots:
     void togglePaintChatWindow();
 
 protected:
-    virtual void init(const std::string &peerId, const QString &title);
 
 private:
     QToolButton *paintChatWindowToggleButton;

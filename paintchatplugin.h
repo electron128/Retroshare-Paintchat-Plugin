@@ -22,7 +22,7 @@ public:
     virtual RsPQIService   *rs_pqi_service() 			const	;
     virtual uint16_t        rs_service_id()         const { return RS_SERVICE_TYPE_PAINTCHAT_PLUGIN ; }
 
-    virtual PopupChatDialog *qt_allocate_new_popup_chat_dialog() const ;
+    virtual PopupChatDialog_WidgetsHolder *qt_allocate_new_popup_chat_dialog_widgets() const ;
 
 private:
     RsPluginHandler *mPlugInHandler;
