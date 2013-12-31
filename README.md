@@ -2,7 +2,7 @@
 
 Draw a quick sketch to explain things.
 
-![screenshot](https://github.com/electron128/Retroshare-Paintchat-Plugin/raw/master/paintchat-1.png "Paintchat Plugin for Retroshare")
+![screenshot](https://github.com/electron128/Retroshare-Paintchat-Plugin/raw/master/paintchat-2.png "Paintchat Plugin for Retroshare")
 
 ## How to compile ##
 

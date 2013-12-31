@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>images/colors.png</file>
+        <file>images/lastic.png</file>
+        <file>images/edit_16.png</file>
     </qresource>
 </RCC>

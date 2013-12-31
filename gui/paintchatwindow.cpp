@@ -2,6 +2,7 @@
 #include "ui_paintchatwindow.h"
 
 #include <QClipboard>
+#include <QColorDialog>
 
 #include <retroshare/rspeers.h>
 
@@ -14,7 +15,7 @@ PaintChatWindow::PaintChatWindow(QWidget *parent) :
     connect(ui->paintWidget,SIGNAL(haveUpdate()),SLOT(on_haveUpdate()));
 
     ui->pushButton1px->setChecked(true);
-    ui->pushButtonBlack->setChecked(true);
+    ui->pushButtonPen->setChecked(true);
 
     ui->paintWidget->color=Qt::black;
     ui->paintWidget->penWidth=1;
@@ -28,6 +29,10 @@ PaintChatWindow::PaintChatWindow(QWidget *parent) :
     QIcon icon ;
     icon.addPixmap(QPixmap(":/images/colors.png"));
     setWindowIcon(icon);
+    
+    QPixmap pix(24, 24);
+    pix.fill(currentColor);
+    ui->pushButtonPrimaryColor->setIcon(pix);
 }
 
 PaintChatWindow::~PaintChatWindow()
@@ -76,17 +81,36 @@ void PaintChatWindow::resetPenButtons(){
     ui->pushButton8px->setChecked(false);
 }
 
-void PaintChatWindow::on_pushButtonBlack_clicked()
+void PaintChatWindow::on_pushButtonPrimaryColor_clicked()
+{
+  bool ok;
+	QRgb color = QColorDialog::getRgba( Qt::black , &ok, window());
+	if (ok) {
+		ui->paintWidget->color=QColor(color);
+		currentColor = QColor(color);
+		colorChanged();
+	}
+}
+
+void PaintChatWindow::colorChanged()
+{
+	QPixmap pix(24, 24);
+	pix.fill(currentColor);
+	ui->pushButtonPrimaryColor->setIcon(pix);
+}
+
+void PaintChatWindow::on_pushButtonPen_clicked()
 {
     ui->pushButtonWhite->setChecked(false);
-    ui->pushButtonBlack->setChecked(true);
-    ui->paintWidget->color=Qt::black;
+    ui->pushButtonPen->setChecked(true);
+
+		ui->paintWidget->color= currentColor; 
 }
 
 void PaintChatWindow::on_pushButtonWhite_clicked()
 {
     ui->pushButtonWhite->setChecked(true);
-    ui->pushButtonBlack->setChecked(false);
+    ui->pushButtonPen->setChecked(false);
     ui->paintWidget->color=Qt::white;
 }
 

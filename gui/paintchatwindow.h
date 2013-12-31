@@ -22,7 +22,9 @@ private slots:
     void on_haveUpdate();
     void on_timer();
 
-    void on_pushButtonBlack_clicked();
+    void on_pushButtonPrimaryColor_clicked();
+    
+    void on_pushButtonPen_clicked();
 
     void on_pushButtonWhite_clicked();
 
@@ -39,6 +41,9 @@ private slots:
 private:
     void updateImage();
     void resetPenButtons();
+    void colorChanged();
+    
+    QColor currentColor;
     Ui::PaintChatWindow *ui;
     std::string peerId;
 
