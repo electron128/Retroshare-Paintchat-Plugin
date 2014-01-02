@@ -65,7 +65,6 @@ RsPQIService *PaintChatPlugin::rs_pqi_service()const{
     return mService;
 }
 
-PopupChatDialog_WidgetsHolder *PaintChatPlugin::qt_allocate_new_popup_chat_dialog_widgets()const{
-    PopupChatDialog_WidgetsHolder *d=new PaintChatPopupChatDialog();
-    return d;
+ChatWidgetHolder *PaintChatPlugin::qt_get_chat_widget_holder(ChatWidget *chatWidget) const{
+    return new PaintChatPopupChatDialog(chatWidget);
 }

@@ -1,8 +1,10 @@
 #include "paintchatpopupchatdialog.h"
 
-PaintChatPopupChatDialog::PaintChatPopupChatDialog()
+PaintChatPopupChatDialog::PaintChatPopupChatDialog(ChatWidget *chatWidget)
+    : QObject(), ChatWidgetHolder(chatWidget)
 {
     paintChatWindow=new PaintChatWindow();
+    paintChatWindow->setPeerId(mChatWidget->getPeerId());
 
     paintChatWindow->hide();
 
@@ -19,12 +21,8 @@ PaintChatPopupChatDialog::PaintChatPopupChatDialog()
     paintChatWindowToggleButton->setIcon(icon);
 
     connect(paintChatWindowToggleButton,SIGNAL(clicked()),this,SLOT(togglePaintChatWindow()));
-}
 
-std::vector<QWidget*> PaintChatPopupChatDialog::getWidgets(){
-    std::vector<QWidget*> v;
-    v.push_back(paintChatWindowToggleButton);
-    return v;
+    mChatWidget->addChatBarWidget(paintChatWindowToggleButton) ;
 }
 
 void PaintChatPopupChatDialog::togglePaintChatWindow(){
@@ -33,8 +31,4 @@ void PaintChatPopupChatDialog::togglePaintChatWindow(){
     }else{
         paintChatWindow->hide();
     }
-}
-
-void PaintChatPopupChatDialog::init(const std::string &peerId, const QString &title, ChatWidget *chatWidget){
-    paintChatWindow->setPeerId(peerId);
 }
