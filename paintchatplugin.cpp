@@ -2,6 +2,8 @@
 
 #include "gui/paintchatpopupchatdialog.h"
 
+#define IMAGE_PAINTCHAT ":/images/colors.png"
+
 extern "C" {
 
     // This is *the* functions required by RS plugin system to give RS access to the plugin.
@@ -29,7 +31,7 @@ extern "C" {
     uint32_t RETROSHARE_PLUGIN_api = RS_PLUGIN_API_VERSION ;
 }
 
-PaintChatPlugin::PaintChatPlugin():mService(NULL){
+PaintChatPlugin::PaintChatPlugin():mService(NULL), mIcon(NULL) {
     std::cerr<<"PaintChatPlugin::PaintChatPlugin()"<<std::endl;
 }
 PaintChatPlugin::~PaintChatPlugin(){
@@ -43,9 +45,9 @@ std::string PaintChatPlugin::getPluginName()const{
     return std::string("PaintChat");
 }
 void PaintChatPlugin::getPluginVersion(int &major, int &minor, int &svn_rev)const{
-    major=0;
-    minor=0;
-    svn_rev=0;
+    major=5;
+    minor=4;
+    svn_rev=SVN_REVISION_NUMBER;
 }
 void PaintChatPlugin::setInterfaces(RsPlugInInterfaces &interfaces){
 
@@ -75,4 +77,15 @@ ChatWidgetHolder *PaintChatPlugin::qt_get_chat_widget_holder(ChatWidget *chatWid
         break;
     }
     return NULL;
+}
+
+QIcon *PaintChatPlugin::qt_icon() const
+{
+    if (mIcon == NULL) {
+        Q_INIT_RESOURCE(paintchat_images);
+
+        mIcon = new QIcon(IMAGE_PAINTCHAT);
+    }
+
+    return mIcon;
 }

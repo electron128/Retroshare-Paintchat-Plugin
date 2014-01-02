@@ -28,4 +28,4 @@ FORMS   = \
 TARGET = PaintChat
 
 RESOURCES += \
-    gui/images.qrc
+    gui/paintchat_images.qrc

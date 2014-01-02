@@ -24,10 +24,13 @@ public:
 
     virtual ChatWidgetHolder *qt_get_chat_widget_holder(ChatWidget *chatWidget) const;
 
+    virtual QIcon *qt_icon() const;
+
 private:
     RsPluginHandler *mPlugInHandler;
     // keine ahnung warum mutable
     mutable p3PaintChatService *mService;
+    mutable QIcon *mIcon;
 };
 
 #endif // PAINTCHATPLUGIN_H
