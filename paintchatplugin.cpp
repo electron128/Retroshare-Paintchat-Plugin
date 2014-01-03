@@ -66,5 +66,13 @@ RsPQIService *PaintChatPlugin::rs_pqi_service()const{
 }
 
 ChatWidgetHolder *PaintChatPlugin::qt_get_chat_widget_holder(ChatWidget *chatWidget) const{
-    return new PaintChatPopupChatDialog(chatWidget);
+    switch (chatWidget->chatType()) {
+    case ChatWidget::CHATTYPE_PRIVATE:
+    case ChatWidget::CHATTYPE_LOBBY:
+         return new PaintChatPopupChatDialog(chatWidget);
+    case ChatWidget::CHATTYPE_UNKNOWN:
+    case ChatWidget::CHATTYPE_DISTANT:
+        break;
+    }
+    return NULL;
 }

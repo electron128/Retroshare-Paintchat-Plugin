@@ -3,8 +3,7 @@
 PaintChatPopupChatDialog::PaintChatPopupChatDialog(ChatWidget *chatWidget)
     : QObject(), ChatWidgetHolder(chatWidget)
 {
-    paintChatWindow=new PaintChatWindow();
-    paintChatWindow->setPeerId(mChatWidget->getPeerId());
+    paintChatWindow=new PaintChatWindow(0, mChatWidget->getPeerId(), mChatWidget);
 
     paintChatWindow->hide();
 

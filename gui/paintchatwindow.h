@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <gui/chat/ChatWidget.h>
 
 namespace Ui {
 class PaintChatWindow;
@@ -13,11 +14,9 @@ class PaintChatWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit PaintChatWindow(QWidget *parent = 0);
+    explicit PaintChatWindow(QWidget *parent, std::string peerId, ChatWidget *chatWidget);
     ~PaintChatWindow();
 
-    void setPeerId(std::string peerId);
-    
 private slots:
     void on_haveUpdate();
     void on_timer();
@@ -38,14 +37,20 @@ private slots:
 
     void on_pushButtonCopy_clicked();
 
+    void on_pushButtonSend_clicked();
+
 private:
     void updateImage();
     void resetPenButtons();
     void colorChanged();
+
+    static std::string imgToHtmlString(QImage img);
     
     QColor currentColor;
     Ui::PaintChatWindow *ui;
     std::string peerId;
+    ChatWidget::ChatType chatType;
+    ChatWidget *chatWidget;
 
     QTimer *timer;
 };
