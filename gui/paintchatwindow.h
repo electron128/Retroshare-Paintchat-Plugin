@@ -39,6 +39,8 @@ private slots:
 
     void on_pushButtonSend_clicked();
 
+    void penChanged();
+
 private:
     void updateImage();
     void resetPenButtons();

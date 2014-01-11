@@ -19,6 +19,7 @@ PaintChatWindow::PaintChatWindow(QWidget *parent, std::string peerId, ChatWidget
 {
     ui->setupUi(this);
     connect(ui->paintWidget,SIGNAL(haveUpdate()),SLOT(on_haveUpdate()));
+    connect(ui->penWidthSpinBox,SIGNAL(valueChanged(int)),this,SLOT(penChanged()));
 
     ui->pushButton1px->setChecked(true);
     ui->pushButtonPen->setChecked(true);
@@ -252,4 +253,12 @@ void PaintChatWindow::on_pushButtonSend_clicked()
     chatWidget->addChatMsg(false, QString::fromStdString(rsPeers->getPeerName(rsPeers->getOwnId())),
                            QDateTime::currentDateTime(), QDateTime::currentDateTime(),
                            QString::fromStdString(html), ChatWidget::MSGTYPE_NORMAL );
+}
+
+void PaintChatWindow::penChanged()
+{
+    resetPenButtons();
+
+    int width = ui->penWidthSpinBox->value();
+    ui->paintWidget->penWidth= width;
 }
